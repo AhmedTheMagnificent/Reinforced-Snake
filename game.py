@@ -134,7 +134,7 @@ class SnakeGameAI:
             
         else:
             next_idx = (idx - 1) % 4
-            new_dir = clock_wiske[next_idx]
+            new_dir = clock_wise[next_idx]
             
         self.direction = new_dir
         
@@ -150,5 +150,20 @@ class SnakeGameAI:
             y -= BLOCK_SIZE
             
         self.head = Point(x, y)
+        
+        
+if __name__ == "__main__":
+    from time import sleep
+    game = SnakeGameAI()
+    while True:
+        # Random action: [straight, right, left]
+        action = [1, 0, 0]
+        reward, game_over, score = game.play_step(action)
+
+        if game_over:
+            print('Final Score:', score)
+            game.reset()
+
+        sleep(0.1)
             
 
